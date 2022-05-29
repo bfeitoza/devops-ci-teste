@@ -1,0 +1,44 @@
+name: CI-CD
+
+on:
+  push:
+    branches: 
+      - devel
+    paths:
+      - rdicidr-0.1.0/**
+
+  workflow_dispatch:
+
+jobs:
+  CI:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run: 
+        working-directory: rdicidr-0.1.0
+        shell: bash
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: "Install dependencies"
+        run:
+          npm install
+      
+      - name: "Lint"
+        run:
+          npm run lint   
+      
+      - name: "Prettier"
+        run:
+          npm run prettier      
+  CD:
+    needs: [CI]
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: "Deploy application"
+        run:
+          echo "Deploy!!!"
