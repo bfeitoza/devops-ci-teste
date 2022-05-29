@@ -12,6 +12,10 @@ on:
 jobs:
   CI:
     runs-on: ubuntu-latest
+    
+    defaults:
+      run: 
+        working-directory: rdicidr-0.1.0    
 
     steps:
       - uses: actions/checkout@v3
