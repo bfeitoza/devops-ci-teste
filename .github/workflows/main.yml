@@ -41,13 +41,19 @@ jobs:
         run: CI=true npm run test  
         
       - name: "Build"
-        run: npm run build        
+        run: npm run build       
+        
+      - name: "Build folder"
+        run: ls -la build/         
   CD:
     needs: [CI]
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
+      
+      - name: "Build folder"
+        run: ls -la build/      
 
       - name: "Deploy application"
         run: echo "Deploy teste!"
