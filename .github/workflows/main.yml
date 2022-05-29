@@ -29,16 +29,19 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: "Install dependencies"
-        run: npm install
-        
-      - name: "Npm ci"
-        run: npm run format        
+        run: npm install            
       
       - name: "Lint"
         run: npm run lint   
       
       - name: "Prettier"
-        run: npm run prettier      
+        run: npx --no-install prettier --check .   
+        
+      - name: "Test (Jest)"
+        run: CI=true npm run test  
+        
+      - name: "Build"
+        run: npm run build        
   CD:
     needs: [CI]
     runs-on: ubuntu-latest
