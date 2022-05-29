@@ -35,7 +35,7 @@ jobs:
         run: npm run lint   
       
       - name: "Prettier"
-        run: npx --no-install prettier --check .   
+        run: npm run prettier   
         
       - name: "Test (Jest)"
         run: CI=true npm run test  
