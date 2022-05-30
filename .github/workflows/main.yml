@@ -45,17 +45,17 @@ jobs:
         
       # Upload the artifact for other stages to use
       - name: Share artifact in github workflow
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v3.1.0
         with:
           name: build
-          path: build        
+          path: build/        
   CD:
     needs: [CI]
     runs-on: ubuntu-latest
 
     steps:
       - name: Get build artifact
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v3.0.0
         with:
           name: build
       
