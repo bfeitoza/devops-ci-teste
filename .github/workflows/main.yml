@@ -44,7 +44,7 @@ jobs:
         run: npm run build       
         
       - name: "Build folder"
-        run: pwd
+        run: ls -la build/
 
       # Upload the artifact for other stages to use
       - name: Share artifact in github workflow
@@ -60,7 +60,7 @@ jobs:
       - name: Get build artifact
         uses: actions/download-artifact@v3.0.0
         with:
-          name: build/
+          name: build
       
       - name: "Build folder"
         run: ls -la build/      
