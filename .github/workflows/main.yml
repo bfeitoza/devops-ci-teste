@@ -38,19 +38,13 @@ jobs:
         run: npm run prettier   
         
       - name: "Test (Jest)"
-        run: CI=true npm run test  
-
-      - name: Create test summary
-        uses: test-summary/action@dist
-        with:
-          paths: results/**/*.tap
-        if: always()        
+        run: CI=true npm run test       
         
       - name: "Build"
         run: npm run build       
         
       - name: "Build folder"
-        run: ls -la build/
+        run: pwd
 
       # Upload the artifact for other stages to use
       - name: Share artifact in github workflow
