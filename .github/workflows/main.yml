@@ -51,7 +51,7 @@ jobs:
         uses: actions/upload-artifact@v3.1.0
         with:
           name: build
-          path: build/        
+          path: rdicidr-0.1.0/build/       
   CD:
     needs: [CI]
     runs-on: ubuntu-latest
