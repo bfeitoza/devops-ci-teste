@@ -16,18 +16,15 @@ jobs:
     defaults:
       run: 
         working-directory: rdicidr-0.1.0
-    
-    strategy:
-      matrix:
-        node-version: [12.x]
 
     steps:
       - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+      
+      - name: Use Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
-
+          node-version: 16.x
+          
       - name: "Install dependencies"
         run: npm install            
       
@@ -42,9 +39,6 @@ jobs:
         
       - name: "Build"
         run: npm run build       
-        
-      - name: "Build folder"
-        run: ls -la build/
 
       # Upload the artifact for other stages to use
       - name: Share artifact in github workflow
@@ -63,7 +57,7 @@ jobs:
           name: build
       
       - name: "Build folder"
-        run: ls -la build/      
+        run: ls -la build      
 
       - name: "Deploy application"
         run: echo "Deploy teste!"
