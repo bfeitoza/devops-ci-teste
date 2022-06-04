@@ -60,8 +60,14 @@ jobs:
         with:
           name: build
       
-      - name: "Build folder"
-        run: ls -la build      
-
-      - name: "Deploy application"
-        run: echo "Deploy teste!"
+      # Setup the AWS credentials
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+      # Copy the files from /build to s3 bucket
+      - name: Deploy static site to S3 bucket
+        run: aws s3 sync . s3://${{ secrets.S3_BUCKET_NAME }} --delete
+        working-directory: build
