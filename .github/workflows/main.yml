@@ -1,15 +1,13 @@
 name: CI-CD
 
 on:
-  workflow_dispatch:
+  workflow_dispatch: 
   
   push:
     branches: 
       - devel
     paths:
       - rdicidr-0.1.0/**
-
-
 
 jobs:
   CI:
@@ -21,7 +19,7 @@ jobs:
         
     strategy:
       matrix:
-        node-version: [12.x, 13.x, 14.x]        
+        node-version: [14.x]
 
     steps:
       - uses: actions/checkout@v3
