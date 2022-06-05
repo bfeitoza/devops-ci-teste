@@ -70,4 +70,3 @@ jobs:
       # Copy the files from /build to s3 bucket
       - name: Deploy static site to S3 bucket
         run: aws s3 sync . s3://${{ secrets.S3_BUCKET_NAME }} --delete
-        working-directory: rdicidr-0.1.0/build/
